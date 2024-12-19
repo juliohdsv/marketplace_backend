@@ -4,11 +4,13 @@ import ProductsRepository from "../repository/ProductsRepository.js";
 class ProductsController{
 
   async index(request, response){
+
     const products = await ProductsRepository.findAll();
     response.status(200).json(products);
   }
 
   async show(request, response){
+
     const { id } = request.params;
     if(!id){
       return response.status(404).json({ error: "Id is requered" });
@@ -35,12 +37,26 @@ class ProductsController{
     response.status(201).send("Registered product");
   }
 
-  update(){
+  async update(request, response){
 
+    const { id } = request.params;
+    const { name, price } = request.body;
+    const productExist = await ProductsRepository.findById(id);
+
+    if(!productExist){
+      return response.status(400).json({error: "Product not found"});
+    }
+
+    await ProductsRepository.update(name, price);
+    response.status(200).send("Updated product");
   }
 
-  delete(){
+  async delete(request, response){
 
+    const { id } = request.params;
+    const products = await ProductsRepository.delete(id);
+
+    response.status(200).json(products);
   }
 
 };

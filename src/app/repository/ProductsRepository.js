@@ -4,13 +4,16 @@ import products from "../../mocks/products.js";
 
 
 class ProductsRepository{
+
   findAll(){
+
     return new Promise((resolve)=>{
       resolve(products);
     });
   }
 
   findById(id){
+
     return new Promise((resolve)=>{
       const product = products.find((item)=> item.id === id);
       resolve(product);
@@ -18,6 +21,7 @@ class ProductsRepository{
   }
 
   findByName(name){
+
     return new Promise((resolve)=>{
       const product = products.find((item)=> item.name === name);
       resolve(product);
@@ -25,22 +29,37 @@ class ProductsRepository{
   }
 
   create(name, price){
+
     return new Promise((resolve)=>{
       products.push({
         id: uuid(),
         name,
         price
-      })
+      });
+
       resolve();
     })
   }
 
-  update(){
+  update(id, name, price){
 
+    return new Promise((resolve) => {
+      const updatedProduct = {name, price};
+
+      products.map((item) => (
+        item.id === id ? updatedProduct : products
+      ));
+
+      resolve(updatedProduct);
+    })
   }
 
-  delete(){
+  delete(id){
 
+    return new Promise((resolve)=>{
+      const removeProduct = products.filter(item => item.id !== id);
+      resolve(removeProduct);
+    });
   }
 }
 
