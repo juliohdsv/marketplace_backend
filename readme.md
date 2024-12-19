@@ -2,10 +2,10 @@
 
 ### Endpoints
 
-> /products - GET | listar produtos
-> /products/:id - GET | Coletar produto
-> /products/:id - PUT | Atualizar produto
-> /products/:id - DELETE | Deletar produto
-> /products - POST | Cadastrar produto
+> /products - GET | listar produtos</br>
+> /products/:id - GET | Coletar produto</br>
+> /products/:id - PUT | Atualizar produto</br>
+> /products/:id - DELETE | Deletar produto</br>
+> /products - POST | Cadastrar produto</br>
 
 
